@@ -1,0 +1,552 @@
+{
+	"info": {
+		"_postman_id": "650805b6-762f-420a-910d-91cf5960c752",
+		"name": "Perry's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34350611"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"createuser_response = pm.response.json();\r",
+							"console.log(createuser_response)\r",
+							"\r",
+							"var fromUser_uuid = createuser_response.id;\r",
+							"pm.collectionVariables.set(\"fromUser_uuid\",fromUser_uuid);\r",
+							"console.log(fromUser_uuid);\r",
+							"\r",
+							"pm.test(\"Status code is 200 for Create User\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validate Create UserName is Correct\", function(){\r",
+							"\r",
+							"    pm.expect(createuser_response.name).to.eql(\"Arvinth\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Arvinth\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create To User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"create_Touser_response = pm.response.json();\r",
+							"console.log(create_Touser_response)\r",
+							"\r",
+							"var touser_uuid = create_Touser_response.id;\r",
+							"pm.collectionVariables.set(\"touser_uuid\",touser_uuid);\r",
+							"console.log(touser_uuid);\r",
+							"\r",
+							"pm.test(\"Status code is 200 for Create ToUser\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Validate TouserName is Correct\", function(){\r",
+							"\r",
+							"    pm.expect(create_Touser_response.name).to.eql(\"Arvinth\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"name\": \"Arvinth\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"updateuser_response = pm.response.json();\r",
+							"console.log(updateuser_response)\r",
+							"\r",
+							"var updated_username = updateuser_response.name;\r",
+							"pm.collectionVariables.set(\"updated_username\",updated_username);\r",
+							"\r",
+							"pm.test(\"Status code is 200 for Update User\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate UpdateUser is Correct\", function(){\r",
+							"\r",
+							"    pm.expect(updateuser_response.name).to.eql(\"Arvinth_Shanmugam\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Arvinth_Shanmugam\",\n    \"id\": \"{{fromUser_uuid}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{fromUser_uuid}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{fromUser_uuid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"createMessage_response = pm.response.json();\r",
+							"console.log(createMessage_response)\r",
+							"\r",
+							"var message_id = createMessage_response.id;\r",
+							"pm.collectionVariables.set(\"message_id\",message_id);\r",
+							"console.log(message_id);\r",
+							"\r",
+							"pm.test(\"Status code is 200 for Create Message\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate Message content is correct\", function(){\r",
+							"\r",
+							"    pm.expect(createMessage_response.message).to.eql(\"Hi, How are you?\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": {\n        \"id\": \"{{fromUser_uuid}}\"\n    },\n    \"to\": {\n        \"id\": \"{{touser_uuid}}\"\n    },\n    \"message\": \"Hi, How are you?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Reply Message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"createMessage_response = pm.response.json();\r",
+							"console.log(createMessage_response)\r",
+							"\r",
+							"var message_id = createMessage_response.id;\r",
+							"console.log(message_id);\r",
+							"\r",
+							"pm.test(\"Status code is 200 for Create Message\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate Reply Message content is correct\", function(){\r",
+							"\r",
+							"    pm.expect(createMessage_response.message).to.eql(\"I am Good!\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"from\": {\n        \"id\": \"{{fromUser_uuid}}\"\n    },\n    \"to\": {\n        \"id\": \"{{touser_uuid}}\"\n    },\n    \"message\": \"I am Good!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/messages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 for Get User\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{fromUser_uuid}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{fromUser_uuid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 for Get Message\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/messages/{{message_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"messages",
+						"{{message_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 for Get List Of Users\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let usersList = pm.response.json();\r",
+							"pm.test(\"List of Users is Not Empty\",function(){\r",
+							"pm.expect(usersList).to.be.an('array').that.is.not.empty;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Messages",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 for List of Messages\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"let messagesList = pm.response.json();\r",
+							"pm.test(\"List of Messages is Not Empty\",function(){\r",
+							"pm.expect(messagesList).to.be.an('array').that.is.not.empty;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/messages?from={{fromUser_uuid}}&to={{touser_uuid}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"messages"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "{{fromUser_uuid}}"
+						},
+						{
+							"key": "to",
+							"value": "{{touser_uuid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 for Delete User\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/users/{{touser_uuid}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"users",
+						"{{touser_uuid}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete Message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 for Delete Message\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/messages/{{message_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"messages",
+						"{{message_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "touser_uuid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "updated_username",
+			"value": ""
+		},
+		{
+			"key": "fromUser_uuid",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "message_id",
+			"value": ""
+		}
+	]
+}
